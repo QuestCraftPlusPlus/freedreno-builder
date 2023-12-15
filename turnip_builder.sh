@@ -47,7 +47,7 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source (~30 MB) ..." $'\n'
-curl https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.zip --output mesa-main.zip &> /dev/null
+curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS --output mesa-main.zip &> /dev/null
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa-main.zip &> /dev/null
@@ -76,17 +76,17 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson build-android-aarch64 --cross-file "$workdir"/mesa-main/android-aarch64 -Dbuildtype=release -Dplatforms=android -Dplatform-sdk-version=33 -Dandroid-stub=true -Dgallium-drivers= -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Db_lto=true &> "$workdir"/meson_log
+meson "build-quest-release" --prefix=/tmp/mesa --cross-file "/tmp/generated-cross-file" --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers= &> "$workdir"/meson_log
 
 
 
 echo "Compiling build files ..." $'\n'
-ninja -C build-android-aarch64 &> "$workdir"/ninja_log
+ninja -C build-quest-release &> "$workdir"/ninja_log
 
 
 
 echo "Using patchelf to match soname ..."  $'\n'
-cp "$workdir"/mesa-main/build-android-aarch64/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
+cp "$workdir"/mesa-main/build-quest-release/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
 cd "$workdir"
 
 
