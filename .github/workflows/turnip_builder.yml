@@ -1,9 +1,7 @@
 name: Build "turnip"
 
-on:
-  workflow_dispatch:
-  schedule:
-  - cron: "20 5 1,15 * *"
+on: [pull_request, push, workflow_dispatch]
+
 
 jobs:
   start_building_turnip:
