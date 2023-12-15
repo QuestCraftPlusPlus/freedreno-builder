@@ -47,11 +47,11 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source (~30 MB) ..." $'\n'
-curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS --output mesa-main.zip &> /dev/null
+curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS --output mesa-LTS.zip &> /dev/null
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
-unzip mesa-main.zip &> /dev/null
-cd mesa-main
+unzip mesa-LTS.zip &> /dev/null
+cd mesa-LTS
 
 
 
@@ -86,7 +86,7 @@ ninja -C build-quest-release &> "$workdir"/ninja_log
 
 
 echo "Using patchelf to match soname ..."  $'\n'
-cp "$workdir"/mesa-main/build-quest-release/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
+cp "$workdir"/mesa-LTS/build-quest-release/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
 cd "$workdir"
 
 
