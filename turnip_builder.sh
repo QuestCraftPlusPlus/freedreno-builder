@@ -5,7 +5,7 @@ nocolor='\033[0m'
 deps="meson ninja patchelf unzip curl pip flex bison zip"
 workdir="$(pwd)/turnip_workdir"
 magiskdir="$workdir/turnip_module"
-ndkver="android-ndk-r25c"
+ndkver="android-ndk-r26"
 clear
 
 
@@ -57,18 +57,18 @@ cd mesa-LTS
 
 echo "Creating meson cross file ..." $'\n'
 ndk="$workdir/$ndkver/toolchains/llvm/prebuilt/linux-x86_64/bin"
-cat <<EOF >"android-aarch64"
+cat <<EOF >"android-cross-file.tmp"
 [binaries]
 ar = '$ndk/llvm-ar'
-c = ['ccache', '$ndk/aarch64-linux-android28-clang']
-cpp = ['ccache', '$ndk/aarch64-linux-android28-clang++', '-fno-exceptions', '-fno-unwind-tables', '-fno-asynchronous-unwind-tables', '-static-libstdc++']
+c = ['ccache', '$ndk/aarch64-linux-android26-clang', '-03', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC']
+cpp = ['ccache', '$ndk/aarch64-linux-android26-clang++', '-03', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC', '-fno-exceptions', '-fno-unwind-tables', '-fno-asynchronous-unwind-tables', '-static-libstdc++']
 c_ld = 'lld'
 cpp_ld = 'lld'
-strip = '$ndk/aarch64-linux-android-strip'
+strip = '$ndk/aarch64-linux-android26-strip'
 pkgconfig = ['env', 'PKG_CONFIG_LIBDIR=NDKDIR/pkgconfig', '/usr/bin/pkg-config']
 [host_machine]
-system = 'android'
-cpu_family = 'aarch64'
+system = 'linux'
+cpu_family = 'arm'
 cpu = 'armv8'
 endian = 'little'
 EOF
