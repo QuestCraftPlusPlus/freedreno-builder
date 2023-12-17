@@ -76,10 +76,10 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson "build-quest-release" --prefix=/tmp/mesa --cross-file "/tmp/generated-cross-file" --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers= &> "$workdir"/meson_log
+meson "build-quest-release" --prefix=/tmp/mesa --cross-file "/tmp/generated-cross-file" --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers=
 
 echo "Patching LibArchive build files ..." $'\n'
-curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS/subprojects/libarchive-3.7.2/meson.build &> /dev/null
+curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS/subprojects/libarchive-3.7.2/meson.build
 
 echo "Compiling build files ..." $'\n'
 ninja -C build-quest-release 
