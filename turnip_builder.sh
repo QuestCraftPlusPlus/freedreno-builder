@@ -57,7 +57,7 @@ cd mesa-LTS
 
 echo "Creating meson cross file ..." $'\n'
 ndk="$workdir/$ndkver/toolchains/llvm/prebuilt/linux-x86_64/bin"
-cat <<EOF >"android-cross-file.tmp"
+cat <<EOF >"android-aarch64"
 [binaries]
 ar = '$ndk/llvm-ar'
 c = ['ccache', '$ndk/aarch64-linux-android26-clang', '-03', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC']
@@ -76,7 +76,7 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson "build-quest-release" --prefix=/tmp/mesa --cross-file "/tmp/generated-cross-file" --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers=
+meson "build-quest-release" --prefix=/tmp/mesa --cross-file "$workdir"/mesa-LTS/android-aarch64 --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers=
 
 echo "Patching LibArchive build files ..." $'\n'
 curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS/subprojects/libarchive-3.7.2/meson.build
