@@ -82,7 +82,7 @@ echo "Patching LibArchive build files ..." $'\n'
 curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS/subprojects/libarchive-3.7.2/meson.build &> /dev/null
 
 echo "Compiling build files ..." $'\n'
-ninja -C build-quest-release &> "$workdir"/ninja_log
+ninja -C build-quest-release 
 
 
 
