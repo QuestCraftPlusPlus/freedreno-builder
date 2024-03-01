@@ -14,6 +14,8 @@ jobs:
         sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
         sudo apt update
         sudo apt build-dep mesa -y
+        sudo pip uninstall meson
+        sudo pip install meson==1.1.0
     
     - name: Execute build script
       run: bash ./turnip_builder.sh
