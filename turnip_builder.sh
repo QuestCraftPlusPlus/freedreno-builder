@@ -51,7 +51,7 @@ curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS-Free
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa-LTS.zip &> /dev/null
-cd mesa-LTS
+cd mesa-LTS-Freedreno
 
 
 
