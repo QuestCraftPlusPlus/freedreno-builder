@@ -67,7 +67,7 @@ cpp_ld = 'lld'
 strip = '$ndk/aarch64-linux-android26-strip'
 pkgconfig = ['env', 'PKG_CONFIG_LIBDIR=NDKDIR/pkgconfig', '/usr/bin/pkg-config']
 [host_machine]
-system = 'linux'
+system = 'android'
 cpu_family = 'arm'
 cpu = 'armv8'
 endian = 'little'
