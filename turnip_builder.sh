@@ -91,6 +91,10 @@ cp "$workdir"/mesa-LTS-Freedreno/build-quest-release/src/freedreno/vulkan/libvul
 cd "$workdir"
 
 
+echo "Using patchelf to fix libz.so.1 -> libz.so..." $'\n'
+patchelf --replace-needed libz.so.1 libz.so "$workdir"/libvulkan_freedreno.so
+
+
 if ! [ -a libvulkan_freedreno.so ]; then
 	echo -e "$red Build failed! $nocolor" && exit 1
 fi
