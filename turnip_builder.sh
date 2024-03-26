@@ -76,10 +76,10 @@ EOF
 
 
 echo "Generating build files ..." $'\n'
-meson "build-quest-release" --prefix=/tmp/mesa --cross-file "$workdir"/mesa-LTS/android-aarch64 --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers=
+meson "build-quest-release" --prefix=/tmp/mesa --cross-file "$workdir"/mesa-LTS-Freedreno/android-aarch64 --buildtype release -Dplatforms=android -Dplatform-sdk-version=32 -Dandroid-stub=true -Dllvm=disabled -Dvulkan-drivers=freedreno -Dfreedreno-kmds=kgsl -Dgallium-drivers=
 
 echo "Patching LibArchive build files ..." $'\n'
-curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS/subprojects/libarchive-3.7.2/meson.build
+curl https://raw.githubusercontent.com/QuestCraftPlusPlus/freedreno-builder/main/libarchive-meson.build --output "$workdir"/mesa-LTS-Freedreno/subprojects/libarchive-3.7.2/meson.build
 
 echo "Compiling build files ..." $'\n'
 ninja -C build-quest-release 
@@ -87,7 +87,7 @@ ninja -C build-quest-release
 
 
 echo "Using patchelf to match soname ..."  $'\n'
-cp "$workdir"/mesa-LTS/build-quest-release/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
+cp "$workdir"/mesa-LTS-Freedreno/build-quest-release/src/freedreno/vulkan/libvulkan_freedreno.so "$workdir"
 cd "$workdir"
 
 
