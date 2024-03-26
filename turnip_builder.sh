@@ -47,7 +47,7 @@ unzip "$ndkver"-linux.zip  &> /dev/null
 
 
 echo "Downloading mesa source (~30 MB) ..." $'\n'
-curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS --output mesa-LTS.zip &> /dev/null
+curl https://codeload.github.com/QuestCraftPlusPlus/mesa/zip/refs/heads/LTS-Freedreno --output mesa-LTS.zip &> /dev/null
 ###
 echo "Exracting mesa source to a folder ..." $'\n'
 unzip mesa-LTS.zip &> /dev/null
